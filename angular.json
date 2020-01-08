@@ -28,9 +28,31 @@
               "src/assets"
             ],
             "styles": [
+              "src/styles/dashforge/lib/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/styles/dashforge/lib/ionicons/css/ionicons.min.css",
+              "src/styles/dashforge/assets/css/dashforge.css",
+              "src/styles/dashforge/assets/css/dashforge.dashboard.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/styles/dashforge/lib/jquery/jquery.min.js",
+              "src/styles/dashforge/lib/bootstrap/js/bootstrap.bundle.min.js",
+              "src/styles/dashforge/lib/feather-icons/feather.min.js",
+              "src/styles/dashforge/lib/perfect-scrollbar/perfect-scrollbar.min.js",
+              "src/styles/dashforge/lib/jquery.flot/jquery.flot.js",
+              "src/styles/dashforge/lib/jquery.flot/jquery.flot.stack.js",
+              "src/styles/dashforge/lib/jquery.flot/jquery.flot.resize.js",
+              {
+                "input": "src/styles/dashforge/assets/js/dashforge.js",
+                "lazy": true,
+                "bundleName": "dashforge"
+              },
+              {
+                "input": "src/styles/dashforge/assets/js/dashforge.aside.js",
+                "lazy": true,
+                "bundleName": "dashforge.aside"
+              }
+            ]
           },
           "configurations": {
             "production": {
@@ -82,6 +104,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "bicv2"
 }
