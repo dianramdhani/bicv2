@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DataTablesModule } from 'angular-datatables';
+import { MomentModule } from 'ngx-moment';
 
 import { BicRoutingModule } from './bic-routing.module';
 import { BicComponent } from './page/bic/bic.component';
@@ -9,7 +11,9 @@ import { BicComponent } from './page/bic/bic.component';
   declarations: [BicComponent],
   imports: [
     CommonModule,
-    BicRoutingModule
+    BicRoutingModule,
+    DataTablesModule,
+    MomentModule
   ]
 })
 export class BicModule { }

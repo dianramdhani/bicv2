@@ -1,1 +1,30 @@
-<p>bic works!</p>
+<div class="d-md-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
+    <h4 class="mg-b-0 tx-spacing--1">BIC Code Detection</h4>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+            <li class="breadcrumb-item">Home</li>
+            <li class="breadcrumb-item active" aria-current="page">BIC Code Detection</li>
+        </ol>
+    </nav>
+</div>
+<table datatable [dtOptions]="dtOptions" class="row-border hover">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Date</th>
+            <th>Code</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="containers?.length !== 0">
+        <tr *ngFor="let container of containers">
+            <td><img [src]="containerService.imageUrl(container.id)" style="height: 100px"></td>
+            <td>{{ container.date | amDateFormat:'YYYY-MM-DD HH:mm:ss' }}</td>
+            <td>{{ container.code }}</td>
+        </tr>
+    <tbody>
+    <tbody *ngIf="containers?.length === 0">
+        <tr>
+            <td colspan="3" class="tx-center">No data!</td>
+        </tr>
+    <tbody>
+</table>

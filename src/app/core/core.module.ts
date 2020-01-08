@@ -8,7 +8,7 @@ import { throwIfAlreadyLoaded } from './guard/module-import.guard';
   declarations: [],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
   ]
 })
 export class CoreModule {
