@@ -11,7 +11,8 @@ import { ShowImageComponent } from './component/show-image/show-image.component'
   declarations: [ShowImageComponent],
   imports: [
     CommonModule,
-    NgbModule
+    NgbModule,
+    MomentModule
   ],
   exports: [
     DataTablesModule,

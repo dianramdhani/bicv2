@@ -1,12 +1,25 @@
 <div class="modal-header">
-    <h4 class="modal-title">Hi there!</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <h6 class="modal-title">Show Image</h6>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-    <p>Hello, {{container.id}}!</p>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    <div class="text-center">
+        <img class="img-fluid" [src]="containerService.imageUrl(container.id)">
+    </div>
+    <div class="table-responsive">
+        <table class="table table-dashboard mg-b-0 tr-fixed-table">
+            <tbody>
+                <tr>
+                    <th>Date</th>
+                    <td class="text-right ng-binding">{{container.date | amDateFormat:'YYYY-MM-DD HH:mm:ss'}}</td>
+                </tr>
+                <tr>
+                    <th>Code</th>
+                    <td class="text-right ng-binding">{{container.code}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
