@@ -2,10 +2,11 @@ import { Component, OnInit, AfterViewInit, ViewChild, OnDestroy } from '@angular
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ContainerRestService } from '@data/service/container-rest.service';
-
 import { Container } from '@data/schema/container';
+import { ShowImageComponent } from '@shared/component/show-image/show-image.component';
 
 @Component({
   selector: 'app-bic',
@@ -19,7 +20,10 @@ export class BicComponent implements OnInit, AfterViewInit, OnDestroy {
   containers: Container[];
   formFilter: FormGroup;
 
-  constructor(private containerService: ContainerRestService) { }
+  constructor(
+    private containerService: ContainerRestService,
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit() {
     this.formFilter = new FormGroup({
@@ -81,5 +85,10 @@ export class BicComponent implements OnInit, AfterViewInit, OnDestroy {
       dtInstance.destroy();
       this.dtTrigger.next();
     });
+  }
+
+  showImage(container: Container, event: MouseEvent) {
+    const modalRef = this.modalService.open(ShowImageComponent);
+    modalRef.componentInstance.container = container;
   }
 }
