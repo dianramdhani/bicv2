@@ -80,7 +80,7 @@ export class BicComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dtTrigger.unsubscribe();
   }
 
-  filter() {
+  refresh() {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.destroy();
       this.dtTrigger.next();

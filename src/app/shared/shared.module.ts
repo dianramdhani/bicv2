@@ -20,7 +20,7 @@ import { ShowImageComponent } from './component/show-image/show-image.component'
     ReactiveFormsModule,
     NgbModule,
 
-    ShowImageComponent
+    ShowImageComponent,
   ],
   entryComponents: [
     ShowImageComponent
