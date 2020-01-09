@@ -6,3 +6,7 @@ body {
 .dataTables_empty {
     display: none;
 }
+
+.dataTables_processing {
+    display: none !important;
+}

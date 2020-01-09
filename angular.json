@@ -38,7 +38,7 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
               "node_modules/datatables.net/js/jquery.dataTables.js",
-              "src/styles/dashforge/lib/bootstrap/js/bootstrap.bundle.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "src/styles/dashforge/lib/feather-icons/feather.min.js",
               "src/styles/dashforge/lib/perfect-scrollbar/perfect-scrollbar.min.js",
               "src/styles/dashforge/lib/jquery.flot/jquery.flot.js",
