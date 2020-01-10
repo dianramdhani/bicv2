@@ -6,13 +6,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ShowImageComponent } from './component/show-image/show-image.component';
+import { ListContainersComponent } from './component/list-containers/list-containers.component';
 
 @NgModule({
-  declarations: [ShowImageComponent],
+  declarations: [ShowImageComponent, ListContainersComponent],
   imports: [
     CommonModule,
     NgbModule,
-    MomentModule
+    MomentModule,
+    DataTablesModule
   ],
   exports: [
     DataTablesModule,
@@ -21,6 +23,7 @@ import { ShowImageComponent } from './component/show-image/show-image.component'
     NgbModule,
 
     ShowImageComponent,
+    ListContainersComponent
   ],
   entryComponents: [
     ShowImageComponent
