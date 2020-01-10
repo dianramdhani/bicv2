@@ -1,0 +1,21 @@
+<div class="row row-xs mg-b-10">
+    <div class="col-lg-6 mg-t-10">
+        <div class="card">
+            <h6 class="card-header pd-t-20 pd-b-0 bd-b-0">Image Upload</h6>
+            <div class="card-body pd-20 ">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" accept="image/x-png,image/jpeg"
+                        (change)="loadImg($event)">
+                    <label class="custom-file-label" for="customFile">{{ fileSelected.name }}</label>
+                </div>
+                <div class="text-right" *ngIf="hasSelected">
+                    <img class="img-fluid mg-t-10" [src]="fileSelected.url">
+                    <button class="btn btn-primary mg-t-10" (click)="upload()">
+                        <span class="spinner-border spinner-border-sm" *ngIf="loading"></span>
+                        Upload
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
