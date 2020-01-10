@@ -37,8 +37,10 @@ export class ContainerRestService {
     return `${this.url}/image/${id}.png`;
   }
 
-  enter() {
-
+  enter(file: File) {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.httpClient.post(`${this.url}/container`, formData);
   }
 
   update() {

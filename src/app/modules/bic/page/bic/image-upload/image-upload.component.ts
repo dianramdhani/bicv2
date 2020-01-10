@@ -1,5 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
+import { ContainerRestService } from '@data/service/container-rest.service';
+
 @Component({
   selector: 'app-image-upload',
   templateUrl: './image-upload.component.html',
@@ -13,8 +15,9 @@ export class ImageUploadComponent {
     url: ''
   };
   hasSelected = false;
+  loading = false;
 
-  constructor() { }
+  constructor(private containerService: ContainerRestService) { }
 
   loadImg(event: any) {
     this.fileSelected.file = event.target.files[0] as File;
@@ -28,8 +31,11 @@ export class ImageUploadComponent {
     this.hasSelected = true;
   }
 
-  upload() {
-    // after it
+  async upload() {
+    this.loading = true;
+    await this.containerService.enter(this.fileSelected.file).toPromise();
+    this.loading = false;
+    this.refresh.next();
     this.fileSelected.name = 'Choose file';
     this.hasSelected = false;
   }

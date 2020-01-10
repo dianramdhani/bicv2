@@ -10,7 +10,10 @@
                 </div>
                 <div class="text-right" *ngIf="hasSelected">
                     <img class="img-fluid mg-t-10" [src]="fileSelected.url">
-                    <button class="btn btn-primary mg-t-10" (click)="upload()">Upload</button>
+                    <button class="btn btn-primary mg-t-10" (click)="upload()">
+                        <span class="spinner-border spinner-border-sm" *ngIf="loading"></span>
+                        Upload
+                    </button>
                 </div>
             </div>
         </div>
