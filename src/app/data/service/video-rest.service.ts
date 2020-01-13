@@ -31,4 +31,16 @@ export class VideoRestService {
       .set('y2', y2.toString());
     return this.httpClient.get<any>(`${this.url}/video/start`, { params });
   }
+
+  stop() {
+    return this.httpClient.get(`${this.url}/video/stop`);
+  }
+
+  getFrameUrl() {
+    return `${this.url}/video/frame?time=${(new Date()).toISOString()}`;
+  }
+
+  getStatus() {
+    return this.httpClient.get<{ running: boolean }>(`${this.url}/video/status`);
+  }
 }

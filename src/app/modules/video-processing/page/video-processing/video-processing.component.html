@@ -7,5 +7,5 @@
         </ol>
     </nav>
 </div>
-<app-video-capture></app-video-capture>
+<app-video-capture (refresh)="refresh()"></app-video-capture>
 <app-list-containers (fetchRefreshFn)="fetchRefreshFn($event)"></app-list-containers>

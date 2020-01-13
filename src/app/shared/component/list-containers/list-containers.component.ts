@@ -50,7 +50,7 @@ export class ListContainersComponent implements OnInit, AfterViewInit, OnDestroy
           limit = dataTablesParameters.length,
           { date1, date2 } = this.formFilter.value;
 
-        console.log(date1, date2);
+        // console.log(date1, date2);
 
         switch (dataTablesParameters.order[0].column) {
           case '1':
