@@ -1,0 +1,27 @@
+<div class="row row-xs mg-b-10">
+    <div class="col-lg-6 mg-t-10">
+        <div class="card">
+            <h6 class="card-header pd-t-20 pd-b-0 bd-b-0">Video Capture</h6>
+            <div class="card-body pd-20 ">
+                <form class="form-inline mb-2" [formGroup]="formVideo">
+                    <div class="form-group mr-4">
+                        <label class="mr-2">Path</label>
+                        <input type="text" class="form-control" formControlName="path">
+                    </div>
+                    <div class="form-group mr-4">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="save" formControlName="save">
+                            <label class="custom-control-label" for="save">Save</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" [disabled]="!formVideo.valid" (click)="start()">
+                            <span class="spinner-border spinner-border-sm" *ngIf="loading"></span>
+                            Start
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

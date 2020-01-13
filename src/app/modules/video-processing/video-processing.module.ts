@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 
 import { VideoProcessingRoutingModule } from './video-processing-routing.module';
 import { VideoProcessingComponent } from './page/video-processing/video-processing.component';
+import { SharedModule } from '@shared/shared.module';
+import { VideoCaptureComponent } from './page/video-processing/video-capture/video-capture.component';
 
 
 @NgModule({
-  declarations: [VideoProcessingComponent],
+  declarations: [VideoProcessingComponent, VideoCaptureComponent],
   imports: [
     CommonModule,
-    VideoProcessingRoutingModule
+    VideoProcessingRoutingModule,
+    SharedModule
   ]
 })
 export class VideoProcessingModule { }
