@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-video-processing',
   templateUrl: './video-processing.component.html',
   styleUrls: ['./video-processing.component.scss']
 })
-export class VideoProcessingComponent implements OnInit {
+export class VideoProcessingComponent {
+  refresh: Function;
 
-  constructor() { }
-
-  ngOnInit() {
+  fetchRefreshFn(refresh: Function) {
+    this.refresh = refresh;
   }
-
 }

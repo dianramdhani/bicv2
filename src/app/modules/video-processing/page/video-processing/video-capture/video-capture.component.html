@@ -1,0 +1,26 @@
+<div class="card mg-b-10">
+    <h6 class="card-header">Video Capture</h6>
+    <div class="card-body pd-20 ">
+        <form [formGroup]="formVideo">
+            <div class="form-group">
+                <label class="mr-2">Path</label>
+                <input type="text" class="form-control form-control-sm" placeholder="path" formControlName="path">
+            </div>
+            <div class="form-group">
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="save" formControlName="save">
+                    <label class="custom-control-label" for="save">Save</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-sm btn-primary" *ngIf="!hasStarted" [disabled]="!formVideo.valid"
+                    (click)="start()">
+                    <span class="spinner-border spinner-border-sm" *ngIf="loading"></span>
+                    Start
+                </button>
+                <button class="btn btn-sm btn-danger" *ngIf="hasStarted" (click)="stop()">Stop</button>
+            </div>
+        </form>
+        <img [src]="frameUrl" class="img-fluid mt-2" *ngIf="hasStarted && frameUrl !==  null">
+    </div>
+</div>

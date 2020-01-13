@@ -28,13 +28,13 @@ export class ContentLayoutComponent implements AfterViewInit, OnDestroy, OnInit 
       {
         label: 'BIC Code Detection',
         type: Type.LINK,
-        icon: 'monitor',
+        icon: 'image',
         state: { to: '/bic', params: {} }
       },
       {
         label: 'Video Processing',
         type: Type.LINK,
-        icon: 'monitor',
+        icon: 'video',
         state: { to: '/video-processing', params: {} }
       }
     ];
