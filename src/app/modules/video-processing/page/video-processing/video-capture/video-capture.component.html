@@ -4,7 +4,7 @@
         <form [formGroup]="formVideo">
             <div class="form-group">
                 <label class="mr-2">Path</label>
-                <input type="text" class="form-control form-control-sm" placeholder="path" formControlName="path">
+                <input type="text" class="form-control form-control-sm" placeholder="Path" formControlName="path">
             </div>
             <div class="form-group">
                 <div class="custom-control custom-switch">
@@ -21,6 +21,8 @@
                 <button class="btn btn-sm btn-danger" *ngIf="hasStarted" (click)="stop()">Stop</button>
             </div>
         </form>
-        <img [src]="frameUrl" class="img-fluid mt-2" *ngIf="hasStarted && frameUrl !==  null">
+        <div class="tx-center">
+            <img [src]="frameUrl" class="img-fluid mt-2" *ngIf="hasStarted && frameUrl !==  null">
+        </div>
     </div>
 </div>

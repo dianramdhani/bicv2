@@ -16,7 +16,7 @@ export class VideoCaptureComponent implements OnInit {
   frameUrl: string = null;
   startSubject = new BehaviorSubject<boolean>(false);
   hasStarted: boolean;
-  tick = 3000;
+  tick = 1000;
 
   constructor(private videoService: VideoRestService) { }
 

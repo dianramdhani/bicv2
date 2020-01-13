@@ -8,7 +8,7 @@
                         (change)="loadImg($event)">
                     <label class="custom-file-label" for="customFile">{{ fileSelected.name }}</label>
                 </div>
-                <div class="text-right" *ngIf="hasSelected">
+                <div *ngIf="hasSelected">
                     <img class="img-fluid mg-t-10" [src]="fileSelected.url">
                     <button class="btn btn-primary mg-t-10" (click)="upload()">
                         <span class="spinner-border spinner-border-sm" *ngIf="loading"></span>
