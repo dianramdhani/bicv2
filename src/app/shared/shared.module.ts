@@ -14,7 +14,8 @@ import { ListContainersComponent } from './component/list-containers/list-contai
     CommonModule,
     NgbModule,
     MomentModule,
-    DataTablesModule
+    DataTablesModule,
+    ReactiveFormsModule
   ],
   exports: [
     DataTablesModule,

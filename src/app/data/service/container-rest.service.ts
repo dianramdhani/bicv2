@@ -43,7 +43,7 @@ export class ContainerRestService {
     return this.httpClient.post(`${this.url}/container`, formData);
   }
 
-  update() {
-
+  update(id: string, date: string, code: string) {
+    return this.httpClient.put(`${this.url}/container`, { id, date, code });
   }
 }
