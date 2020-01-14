@@ -6,7 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ContainerRestService } from '@data/service/container-rest.service';
 import { Container } from '@data/schema/container'
-import { ShowImageComponent } from '../show-image/show-image.component';
+import { ShowImageComponent } from './show-image/show-image.component';
 
 @Component({
   selector: 'app-list-containers',

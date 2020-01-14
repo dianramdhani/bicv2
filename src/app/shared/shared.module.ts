@@ -5,7 +5,7 @@ import { MomentModule } from 'ngx-moment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { ShowImageComponent } from './component/show-image/show-image.component';
+import { ShowImageComponent } from './component/list-containers/show-image/show-image.component';
 import { ListContainersComponent } from './component/list-containers/list-containers.component';
 
 @NgModule({
@@ -23,7 +23,6 @@ import { ListContainersComponent } from './component/list-containers/list-contai
     ReactiveFormsModule,
     NgbModule,
 
-    ShowImageComponent,
     ListContainersComponent
   ],
   entryComponents: [

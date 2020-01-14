@@ -1,6 +1,8 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ContainerRestService } from '@data/service/container-rest.service';
+import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 
 @Component({
   selector: 'app-image-upload',
@@ -17,7 +19,10 @@ export class ImageUploadComponent {
   hasSelected = false;
   loading = false;
 
-  constructor(private containerService: ContainerRestService) { }
+  constructor(
+    private containerService: ContainerRestService,
+    private modalService: NgbModal
+  ) { }
 
   loadImg(event: any) {
     this.fileSelected.file = event.target.files[0] as File;
@@ -38,5 +43,9 @@ export class ImageUploadComponent {
     this.refresh.next();
     this.fileSelected.name = 'Choose file';
     this.hasSelected = false;
+  }
+
+  cropImage() {
+    const modalRef = this.modalService.open(ImageCropperComponent);
   }
 }

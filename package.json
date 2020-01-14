@@ -28,6 +28,8 @@
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "ngx-moment": "^3.5.0",
+    "paper": "^0.12.4",
+    "popper.js": "^1.16.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
@@ -41,6 +43,7 @@
     "@types/feather-icons": "^4.7.0",
     "@types/jquery": "^3.3.31",
     "@types/node": "~8.9.4",
+    "@types/paper": "^0.12.3",
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
