@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy, Output, EventEmitter, Input } from '@angular/core';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -6,7 +6,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ContainerRestService } from '@data/service/container-rest.service';
 import { Container } from '@data/schema/container'
-import { ShowImageComponent } from '../show-image/show-image.component';
+import { ShowImageComponent } from './show-image/show-image.component';
 
 @Component({
   selector: 'app-list-containers',
@@ -14,6 +14,7 @@ import { ShowImageComponent } from '../show-image/show-image.component';
   styleUrls: ['./list-containers.component.scss']
 })
 export class ListContainersComponent implements OnInit, AfterViewInit, OnDestroy {
+  @Input() showRefresh: boolean = false;
   @Output() fetchRefreshFn = new EventEmitter<Function>();
   @ViewChild(DataTableDirective, { static: false }) dtElement: DataTableDirective;
   dtOptions: DataTables.Settings = {};

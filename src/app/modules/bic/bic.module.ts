@@ -8,7 +8,10 @@ import { ImageUploadComponent } from './page/bic/image-upload/image-upload.compo
 
 
 @NgModule({
-  declarations: [BicComponent, ImageUploadComponent],
+  declarations: [
+    BicComponent,
+    ImageUploadComponent
+  ],
   imports: [
     CommonModule,
     BicRoutingModule,

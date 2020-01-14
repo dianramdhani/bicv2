@@ -1,5 +1,8 @@
 <div class="card">
-    <h6 class="card-header">List Data</h6>
+    <div class="card-header d-flex justify-content-between">
+        <h6>List Data</h6>
+        <button class="btn btn-sm btn-primary" *ngIf="showRefresh" (click)="refresh()">Refresh</button>
+    </div>
     <div class="card-body">
         <!-- if is has been fix, uncomment it -->
         <!-- <h6 class="tx-gray-500">Filter Date</h6>

@@ -12,6 +12,6 @@
         <app-video-capture (refresh)="refresh()"></app-video-capture>
     </div>
     <div class="col-lg">
-        <app-list-containers (fetchRefreshFn)="fetchRefreshFn($event)"></app-list-containers>
+        <app-list-containers (fetchRefreshFn)="fetchRefreshFn($event)" [showRefresh]="true"></app-list-containers>
     </div>
 </div>

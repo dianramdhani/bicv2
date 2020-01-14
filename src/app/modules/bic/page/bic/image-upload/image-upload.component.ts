@@ -1,6 +1,9 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ContainerRestService } from '@data/service/container-rest.service';
+
+import { FileImage } from './file-image.model';
 
 @Component({
   selector: 'app-image-upload',
@@ -9,7 +12,7 @@ import { ContainerRestService } from '@data/service/container-rest.service';
 })
 export class ImageUploadComponent {
   @Output() refresh = new EventEmitter();
-  fileSelected: { name: string, file: File, url: string } = {
+  fileSelected: FileImage = {
     name: 'Choose file',
     file: null,
     url: ''
@@ -17,7 +20,10 @@ export class ImageUploadComponent {
   hasSelected = false;
   loading = false;
 
-  constructor(private containerService: ContainerRestService) { }
+  constructor(
+    private containerService: ContainerRestService,
+    private modalService: NgbModal
+  ) { }
 
   loadImg(event: any) {
     this.fileSelected.file = event.target.files[0] as File;
