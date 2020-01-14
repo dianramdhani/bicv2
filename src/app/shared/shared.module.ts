@@ -4,18 +4,21 @@ import { DataTablesModule } from 'angular-datatables';
 import { MomentModule } from 'ngx-moment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 import { ShowImageComponent } from './component/list-containers/show-image/show-image.component';
 import { ListContainersComponent } from './component/list-containers/list-containers.component';
+import { ImageCropperComponent } from './component/image-cropper/image-cropper.component';
 
 @NgModule({
-  declarations: [ShowImageComponent, ListContainersComponent],
+  declarations: [ShowImageComponent, ListContainersComponent, ImageCropperComponent],
   imports: [
     CommonModule,
     NgbModule,
     MomentModule,
     DataTablesModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ImageCropperModule
   ],
   exports: [
     DataTablesModule,
@@ -23,10 +26,12 @@ import { ListContainersComponent } from './component/list-containers/list-contai
     ReactiveFormsModule,
     NgbModule,
 
-    ListContainersComponent
+    ListContainersComponent,
+    ImageCropperComponent
   ],
   entryComponents: [
-    ShowImageComponent
+    ShowImageComponent,
+    ImageCropperComponent
   ]
 })
 export class SharedModule { }

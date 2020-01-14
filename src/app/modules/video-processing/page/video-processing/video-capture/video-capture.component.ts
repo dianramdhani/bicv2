@@ -3,6 +3,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BehaviorSubject, Subscription, interval } from 'rxjs';
 
 import { VideoRestService } from '@data/service/video-rest.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ImageCropperComponent } from '@shared/component/image-cropper/image-cropper.component';
+import { CropperPosition } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-video-capture',
@@ -18,7 +21,10 @@ export class VideoCaptureComponent implements OnInit {
   hasStarted: boolean;
   tick = 1000;
 
-  constructor(private videoService: VideoRestService) { }
+  constructor(
+    private videoService: VideoRestService,
+    private modalService: NgbModal
+  ) { }
 
   async ngOnInit() {
     this.formVideo = new FormGroup({
@@ -41,9 +47,9 @@ export class VideoCaptureComponent implements OnInit {
       if (status) {
         subscription = timer.subscribe(() => {
           this.frameUrl = this.videoService.getFrameUrl();
-          if (save) {
-            this.refresh.next();
-          }
+          // if (save) {
+          //   this.refresh.next();
+          // }
         });
       } else if (subscription) {
         subscription.unsubscribe();
@@ -63,5 +69,13 @@ export class VideoCaptureComponent implements OnInit {
   async stop() {
     await this.videoService.stop().toPromise();
     this.startSubject.next(false)
+  }
+
+  cropVideo() {
+    const modalRef = this.modalService.open(ImageCropperComponent, { size: 'lg' });
+    modalRef.componentInstance.imageUrl = this.frameUrl;
+    modalRef.componentInstance.crop.subscribe(async (imagePosition: CropperPosition) => {
+      await this.videoService.crop(imagePosition).toPromise();
+    });
   }
 }

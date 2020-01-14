@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <h6 class="modal-title">Crop Area</h6>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <image-cropper [imageFile]="imageFile" [maintainAspectRatio]="false" (imageCropped)="imageCropped($event)"
+        (cropperReady)="cropperReady()">
+    </image-cropper>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" (click)="apply()">Apply</button>
+</div>

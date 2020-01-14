@@ -18,7 +18,10 @@
                     <span class="spinner-border spinner-border-sm" *ngIf="loading"></span>
                     Start
                 </button>
-                <button class="btn btn-sm btn-danger" *ngIf="hasStarted" (click)="stop()">Stop</button>
+                <div *ngIf="hasStarted">
+                    <button class="btn btn-sm btn-danger" (click)="stop()">Stop</button>
+                    <button class="btn btn-sm btn-primary ml-2" [disabled]="frameUrl ===  null" (click)="cropVideo()">Crop Video</button>
+                </div>
             </div>
         </form>
         <div class="tx-center">
