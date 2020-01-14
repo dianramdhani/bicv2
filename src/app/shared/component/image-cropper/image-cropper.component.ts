@@ -14,14 +14,10 @@ export class ImageCropperComponent implements OnInit {
   @Output() crop = new EventEmitter<CropperPosition>();
   imageFile: Blob;
   lastCropperEvent: ImageCroppedEvent;
-  // cropperInit: CropperPosition;
 
-  constructor(
-    public activeModal: NgbActiveModal,
-    private videoService: VideoRestService
-  ) { }
+  constructor(public activeModal: NgbActiveModal) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.setImageFile(this.imageUrl);
   }
 
@@ -35,16 +31,8 @@ export class ImageCropperComponent implements OnInit {
     }
   }
 
-  async cropperReady() {
-    // this.cropperInit = await this.videoService.getCrop().toPromise();
-    // console.log(res);
-
-    console.log('siap');
-  }
-
   imageCropped(event: ImageCroppedEvent) {
     this.lastCropperEvent = event;
-    console.log(this.lastCropperEvent);
   }
 
   apply() {
