@@ -1,12 +1,60 @@
 <div class="d-md-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
-    <h4 class="mg-b-0 tx-spacing--1">Setup Video</h4>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb breadcrumb-style1 mg-b-10">
-            <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item">
-                <a routerLink="../">Video Processing</a>
-            </li>
-            <li class="breadcrumb-item active" aria-current="page">Setup Video</li>
-        </ol>
-    </nav>
+  <h4 class="mg-b-0 tx-spacing--1">Setup Video</h4>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb breadcrumb-style1 mg-b-10">
+      <li class="breadcrumb-item">Home</li>
+      <li class="breadcrumb-item">
+        <a routerLink="../">Video Processing</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Setup Video</li>
+    </ol>
+  </nav>
 </div>
+<form [formGroup]="formVideo">
+  <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'">
+    <aw-wizard-step [stepTitle]="'Set Path'" [navigationSymbol]="{ symbol: '&#xf0c1;', fontFamily: 'FontAwesome' }">
+      <div class="tx-center">
+        <div class="height-content d-flex flex-column justify-content-center">
+          <h6 class="tx-gray-500 mb-4">Path of video</h6>
+          <input type="text" class="form-control form-control-lg tx-center" placeholder="Path" formControlName="path">
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" awNextStep [disabled]="!formVideo.controls.path.valid"
+            (click)="getFrame()">Next</button>
+        </div>
+      </div>
+    </aw-wizard-step>
+    <aw-wizard-step [stepTitle]="'Select Area'" [navigationSymbol]="{ symbol: '&#xf0c8;', fontFamily: 'FontAwesome' }">
+      <div class="tx-center">
+        <div class="height-content d-flex flex-column justify-content-center">
+          <h6 class="tx-gray-500" *ngIf="loadingImage">Loading...</h6>
+          <image-cropper *ngIf="!loadingImage" [imageFile]="imageFile" [maintainAspectRatio]="false"
+            (imageCropped)="imageCropped($event)">
+          </image-cropper>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" awPreviousStep (click)="removeFrame()">Back</button>
+          <button type="button" class="btn btn-primary" awNextStep (click)="removeFrame()">Next</button>
+        </div>
+      </div>
+    </aw-wizard-step>
+    <aw-wizard-step [stepTitle]="'Save Frame'" [navigationSymbol]="{ symbol: '&#xf00c;', fontFamily: 'FontAwesome' }">
+      <div class="tx-center">
+        <div class="height-content d-flex flex-column justify-content-center">
+          <h6 class="tx-gray-500 mb-4">Do you want to save the code detection results?</h6>
+          <div class="custom-control custom-switch">
+            <input type="checkbox" class="custom-control-input" id="save" formControlName="save">
+            <label class="custom-control-label" for="save">Save</label>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" awPreviousStep (click)="getFrame()">Back</button>
+          <button type="button" class="btn btn-primary" (click)="apply()">
+            <span class="spinner-border spinner-border-sm" *ngIf="loadingApply"></span>
+            Apply
+          </button>
+        </div>
+      </div>
+    </aw-wizard-step>
+  </aw-wizard>
+</form>
