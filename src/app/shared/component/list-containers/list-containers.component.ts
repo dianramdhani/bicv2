@@ -91,7 +91,7 @@ export class ListContainersComponent implements OnInit, AfterViewInit, OnDestroy
   }
 
   showImage(container: Container, event: MouseEvent) {
-    const modalRef = this.modalService.open(ShowImageComponent);
+    const modalRef = this.modalService.open(ShowImageComponent, { size: 'lg' });
     modalRef.componentInstance.container = container;
     modalRef.componentInstance.refresh.subscribe(() => this.refresh());
   }
