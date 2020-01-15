@@ -5,10 +5,11 @@ import { VideoProcessingRoutingModule } from './video-processing-routing.module'
 import { VideoProcessingComponent } from './page/video-processing/video-processing.component';
 import { SharedModule } from '@shared/shared.module';
 import { VideoCaptureComponent } from './page/video-processing/video-capture/video-capture.component';
+import { VideoSetupComponent } from './page/video-setup/video-setup.component';
 
 
 @NgModule({
-  declarations: [VideoProcessingComponent, VideoCaptureComponent],
+  declarations: [VideoProcessingComponent, VideoCaptureComponent, VideoSetupComponent],
   imports: [
     CommonModule,
     VideoProcessingRoutingModule,

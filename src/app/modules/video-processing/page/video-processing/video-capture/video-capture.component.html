@@ -1,5 +1,8 @@
 <div class="card mg-b-10">
-    <h6 class="card-header">Video Capture</h6>
+    <div class="card-header d-flex justify-content-between">
+        <h6>Video Capture</h6>
+        <button class="btn btn-sm btn-primary" routerLink="./video-setup">Setup Video</button>
+    </div>
     <div class="card-body pd-20 ">
         <form [formGroup]="formVideo">
             <div class="form-group">
@@ -20,7 +23,8 @@
                 </button>
                 <div *ngIf="hasStarted">
                     <button class="btn btn-sm btn-danger" (click)="stop()">Stop</button>
-                    <button class="btn btn-sm btn-primary ml-2" [disabled]="frameUrl ===  null" (click)="cropVideo()">Crop Video</button>
+                    <button class="btn btn-sm btn-primary ml-2" [disabled]="frameUrl ===  null"
+                        (click)="cropVideo()">Crop Video</button>
                 </div>
             </div>
         </form>
