@@ -6,7 +6,7 @@
             <button class="btn btn-sm btn-primary" *ngIf="!hasStarted" routerLink="./video-setup">Setup Video</button>
         </div>
     </div>
-    <div class="card-body tx-center d-flex flex-column justify-content-center pd-20" style="height: 450px;">
+    <div class="card-body tx-center d-flex flex-column justify-content-center pd-20" style="min-height: 450px;">
         <img [src]="frameUrl" class="img-fluid" *ngIf="hasStarted && frameUrl !== null">
         <div class="tx-gray-500" *ngIf="!hasStarted">
             <h6 class="tx-gray-500">Video is not defined</h6>

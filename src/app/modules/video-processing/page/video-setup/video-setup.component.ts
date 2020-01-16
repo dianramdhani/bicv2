@@ -12,7 +12,7 @@ import { VideoRestService } from '@data/service/video-rest.service';
 })
 export class VideoSetupComponent implements OnInit {
   formVideo: FormGroup;
-  tick = 1000;
+  tick = 100;
   imagePosition: CropperPosition;
   imageFile: Blob;
   loadingImage = false;
@@ -42,14 +42,16 @@ export class VideoSetupComponent implements OnInit {
     this.loadingImage = true;
     const { path, save } = this.formVideo.value;
     await this.videoService.start(path, save, this.tick).toPromise();
-    try {
-      const res = await fetch(this.videoService.getFrameUrl()),
-        blob = await res.blob();
-      this.imageFile = blob;
-    } catch (error) {
-      console.error('error load image', error);
-    }
-    this.loadingImage = false;
+    setTimeout(async () => {
+      try {
+        const res = await fetch(this.videoService.getFrameUrl()),
+          blob = await res.blob();
+        this.imageFile = blob;
+        this.loadingImage = false;
+      } catch (error) {
+        console.error('error load image', error);
+      }
+    }, 1000);
   }
 
   removeFrame() {

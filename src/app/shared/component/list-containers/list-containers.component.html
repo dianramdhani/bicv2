@@ -28,7 +28,7 @@
                 </thead>
                 <tbody *ngIf="containers?.length !== 0">
                     <tr *ngFor="let container of containers" (click)="showImage(container, $event)">
-                        <td><img class="ht-150" [src]="containerService.imageUrl(container.id)"></td>
+                        <td><img class="img-fluid" [src]="containerService.imageUrl(container.id)" style="max-height: 150px;"></td>
                         <td>{{ container.date | amDateFormat:'YYYY-MM-DD HH:mm:ss' }}</td>
                         <td>{{ container.code }}</td>
                     </tr>
