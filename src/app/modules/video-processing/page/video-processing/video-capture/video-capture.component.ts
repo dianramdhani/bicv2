@@ -14,68 +14,37 @@ import { CropperPosition } from 'ngx-image-cropper';
 })
 export class VideoCaptureComponent implements OnInit {
   @Output() refresh = new EventEmitter();
-  loading = false;
-  formVideo: FormGroup;
   frameUrl: string = null;
-  startSubject = new BehaviorSubject<boolean>(false);
+  startVideo = new BehaviorSubject<boolean>(false);
   hasStarted: boolean;
   tick = 1000;
 
-  constructor(
-    private videoService: VideoRestService,
-    private modalService: NgbModal
-  ) { }
+  constructor(private videoService: VideoRestService) { }
 
   async ngOnInit() {
-    this.formVideo = new FormGroup({
-      path: new FormControl('', Validators.required),
-      save: new FormControl(false, Validators.required)
-    });
-
     const { running } = await this.videoService.getStatus().toPromise();
-    this.startSubject.next(running);
+    this.startVideo.next(running);
 
-    this.videoPlayer();
+    this.initVideoPlayer();
   }
 
-  private videoPlayer() {
+  private initVideoPlayer() {
     const timer = interval(this.tick);
-    let subscription: Subscription;
-    this.startSubject.subscribe(status => {
-      this.hasStarted = status;
-      const { save } = this.formVideo.value;
-      if (status) {
-        subscription = timer.subscribe(() => {
+    let timerSubscriber: Subscription;
+    this.startVideo.subscribe(running => {
+      if (running) {
+        timerSubscriber = timer.subscribe(() => {
           this.frameUrl = this.videoService.getFrameUrl();
-          // if (save) {
-          //   this.refresh.next();
-          // }
         });
-      } else if (subscription) {
-        subscription.unsubscribe();
+      } else if (timerSubscriber) {
+        timerSubscriber.unsubscribe();
       }
+      this.hasStarted = running;
     });
-  }
-
-  async start() {
-    this.loading = true;
-    const { path, save } = this.formVideo.value;
-    await this.videoService.start(path, save, this.tick).toPromise();
-    this.loading = false;
-    this.frameUrl = null;
-    this.startSubject.next(true);
   }
 
   async stop() {
     await this.videoService.stop().toPromise();
-    this.startSubject.next(false)
-  }
-
-  cropVideo() {
-    const modalRef = this.modalService.open(ImageCropperComponent, { size: 'lg' });
-    modalRef.componentInstance.imageUrl = this.frameUrl;
-    modalRef.componentInstance.crop.subscribe(async (imagePosition: CropperPosition) => {
-      await this.videoService.crop(imagePosition).toPromise();
-    });
+    this.startVideo.next(false)
   }
 }

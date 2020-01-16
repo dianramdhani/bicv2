@@ -66,6 +66,6 @@ export class VideoSetupComponent implements OnInit {
     const { path, save } = this.formVideo.value;
     await this.videoService.start(path, save, this.tick).toPromise();
     this.loadingApply = false;
-    this.router.navigate(['../'], { relativeTo: this.route, skipLocationChange: true });
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 }
