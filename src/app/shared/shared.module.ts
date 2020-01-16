@@ -25,6 +25,7 @@ import { ImageCropperComponent } from './component/image-cropper/image-cropper.c
     MomentModule,
     ReactiveFormsModule,
     NgbModule,
+    ImageCropperModule,
 
     ListContainersComponent,
     ImageCropperComponent
