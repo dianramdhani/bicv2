@@ -5,6 +5,7 @@ import { MomentModule } from 'ngx-moment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { PinchZoomModule } from 'ngx-pinch-zoom';
 
 import { ShowImageComponent } from './component/list-containers/show-image/show-image.component';
 import { ListContainersComponent } from './component/list-containers/list-containers.component';
@@ -18,7 +19,8 @@ import { ImageCropperComponent } from './component/image-cropper/image-cropper.c
     MomentModule,
     DataTablesModule,
     ReactiveFormsModule,
-    ImageCropperModule
+    ImageCropperModule,
+    PinchZoomModule
   ],
   exports: [
     DataTablesModule,

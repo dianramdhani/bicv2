@@ -6,7 +6,9 @@
 </div>
 <div class="modal-body">
     <div class="text-center">
-        <img class="img-fluid" [src]="containerService.imageUrl(container.id)">
+        <pinch-zoom [limit-zoom]="10">
+            <img class="img-fluid" [src]="containerService.imageUrl(container.id)">
+        </pinch-zoom>
     </div>
     <div class="table-responsive">
         <table class="table table-dashboard mg-b-0 tr-fixed-table overflow-hidden">
