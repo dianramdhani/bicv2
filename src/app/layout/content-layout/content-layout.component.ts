@@ -26,16 +26,16 @@ export class ContentLayoutComponent implements AfterViewInit, OnDestroy, OnInit 
   ) {
     this.menus = [
       {
-        label: 'BIC Code Detection',
-        type: Type.LINK,
-        icon: 'image',
-        state: { to: '/bic', params: {} }
-      },
-      {
         label: 'Video Processing',
         type: Type.LINK,
         icon: 'video',
         state: { to: '/video-processing', params: {} }
+      },
+      {
+        label: 'BIC Code Detection',
+        type: Type.LINK,
+        icon: 'image',
+        state: { to: '/bic', params: {} }
       }
     ];
   }

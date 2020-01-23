@@ -1,4 +1,10 @@
+@import 'bootstrap';
+
 .height-content {
-    height: 500px;
+    height: 400px;
     padding: 20px;
+
+    @include media-breakpoint-down(lg) {
+        height: 300px;
+    }
 }
