@@ -26,6 +26,12 @@ export class ContentLayoutComponent implements AfterViewInit, OnDestroy, OnInit 
   ) {
     this.menus = [
       {
+        label: 'Dashboard',
+        type: Type.LINK,
+        icon: 'monitor',
+        state: { to: '/dashboard', params: {} }
+      }, 
+      {
         label: 'Video Processing',
         type: Type.LINK,
         icon: 'video',
