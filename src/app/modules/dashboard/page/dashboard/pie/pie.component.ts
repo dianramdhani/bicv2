@@ -25,8 +25,8 @@ export class PieComponent implements OnInit {
             48,
           ],
           backgroundColor: [
-            '#007bff',
             '#97a3b9',
+            '#007bff',
           ]
         }],
         labels: [
