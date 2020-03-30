@@ -15,6 +15,7 @@ export class VideoRestService {
 
   start(
     path: string,
+    location: string,
     save: boolean = false,
     processingInterval: number = 1000,
     x1: number = -1,
@@ -24,6 +25,7 @@ export class VideoRestService {
   ) {
     const params = new HttpParams()
       .set('path', path)
+      .set('location', location)
       .set('save', save.toString())
       .set('processingInterval', processingInterval.toString())
       .set('x1', x1.toString())

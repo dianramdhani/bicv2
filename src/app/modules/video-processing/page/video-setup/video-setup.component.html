@@ -13,13 +13,26 @@
 <form [formGroup]="formVideo">
   <aw-wizard #wizard [navBarLayout]="'large-empty-symbols'">
     <aw-wizard-step [stepTitle]="'Set Path'" [navigationSymbol]="{ symbol: '&#xf0c1;', fontFamily: 'FontAwesome' }">
-      <div class="tx-center">
-        <div class="height-content d-flex flex-column justify-content-center">
-          <h6 class="tx-gray-500 mb-4">Path of video</h6>
-          <input type="text" class="form-control form-control-lg tx-center" placeholder="Path" formControlName="path">
+      <div class="height-content d-flex flex-column justify-content-center">
+        <div class="mg-lg-x-250">
+          <div class="form-group row">
+            <label class="col-lg-2 col-form-label">Path</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" placeholder="Path" formControlName="path">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-lg-2 col-form-label">Location</label>
+            <div class="col-lg-10">
+              <input type="text" class="form-control" placeholder="Location" formControlName="location">
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="tx-center">
         <div class="btn-group">
-          <button type="button" class="btn btn-primary" awNextStep [disabled]="!formVideo.controls.path.valid"
+          <button type="button" class="btn btn-primary" awNextStep
+            [disabled]="!(formVideo.controls.path.valid && formVideo.controls.location.valid)"
             (click)="getFrame()">Next</button>
         </div>
       </div>

@@ -27,6 +27,7 @@ export class VideoSetupComponent implements OnInit {
   ngOnInit() {
     this.formVideo = new FormGroup({
       path: new FormControl('', Validators.required),
+      location: new FormControl('', Validators.required),
       save: new FormControl(false, Validators.required)
     });
 
@@ -40,8 +41,8 @@ export class VideoSetupComponent implements OnInit {
 
   async getFrame() {
     this.loadingImage = true;
-    const { path, save } = this.formVideo.value;
-    await this.videoService.start(path, save, this.tick).toPromise();
+    const { path, location, save } = this.formVideo.value;
+    await this.videoService.start(path, location, save, this.tick).toPromise();
     setTimeout(async () => {
       try {
         const res = await fetch(this.videoService.getFrameUrl()),
@@ -65,8 +66,8 @@ export class VideoSetupComponent implements OnInit {
   async apply() {
     this.loadingApply = true;
     await this.videoService.crop(this.imagePosition).toPromise();
-    const { path, save } = this.formVideo.value;
-    await this.videoService.start(path, save, this.tick).toPromise();
+    const { path, location, save } = this.formVideo.value;
+    await this.videoService.start(path, location, save, this.tick).toPromise();
     this.loadingApply = false;
     this.router.navigate(['../'], { relativeTo: this.route });
   }
