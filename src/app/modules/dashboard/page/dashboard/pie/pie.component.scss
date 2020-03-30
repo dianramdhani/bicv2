@@ -1,0 +1,10 @@
+.chart-container {
+    position: relative;
+
+    .chart-status {
+        position: absolute;
+        top: calc(50% - 70px);
+        left: 50%;
+        transform: translate(-50%, 50%);
+    }
+}
