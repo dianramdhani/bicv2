@@ -38,7 +38,8 @@ export class PieComponent implements OnInit {
         responsive: false,
         legend: {
           position: 'bottom'
-        }
+        },
+        cutoutPercentage: 80
       }
     });
   }
