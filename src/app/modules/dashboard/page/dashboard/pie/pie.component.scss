@@ -1,6 +1,11 @@
 .chart-container {
     position: relative;
 
+    .chart {
+        position: relative;
+        z-index: 1;
+    }
+
     .chart-status {
         position: absolute;
         top: calc(50% - 70px);
