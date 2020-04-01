@@ -18,13 +18,24 @@
         </div>
     </div>
     <div class="col-lg mb-2">
-        <div class="card card-body widget">
-            <h6 class="tx-gray-500">Container In / Out Today</h6>
-            <h3 class="tx-bolder">2453 / 2000</h3>
-            <small class="tx-bold">
-                <span class="tx-success mr-2"><i data-feather="arrow-up"></i> 20% from yesterday</span>
-                <span class="tx-danger ml-2"><i data-feather="arrow-down"></i> 20% from yesterday</span>
-            </small>
+        <div class="card" *ngIf="containerInOutObs | async as containerInOut; else loading">
+            <div class="card-body widget">
+                <h6 class="tx-gray-500">Container In / Out Today</h6>
+                <h3 class="tx-bolder">{{ containerInOut.in }} / {{ containerInOut.out }}</h3>
+                <small class="tx-bold d-flex justify-content-center">
+                    <span class="tx-success mr-2" *ngIf="containerInOut.increasein !== '-'">
+                        <i data-feather="arrow-up"></i> {{ containerInOut.increasein }}% from yesterday
+                    </span>
+                    <span class="tx-danger ml-2" *ngIf="containerInOut.increaseout !== '-'">
+                        <i data-feather="arrow-down"></i> {{ containerInOut.increaseout }}% from yesterday
+                    </span>
+                </small>
+            </div>
+            <ng-template #loading>
+                <div class="card-body">
+                    Loading...
+                </div>
+            </ng-template>
         </div>
     </div>
     <div class="col-lg mb-2">

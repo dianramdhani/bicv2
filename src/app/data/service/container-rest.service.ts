@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Table } from '@data/schema/table';
 import { Container } from '@data/schema/container';
+import { ContainerInOut } from '@data/schema/container-in-out';
 
 @Injectable({
   providedIn: 'root'
@@ -45,5 +46,13 @@ export class ContainerRestService {
 
   update(id: string, date: string, code: string) {
     return this.httpClient.put(`${this.url}/container`, { id, date, code });
+  }
+
+  getContainerInOut(date: string = null) {
+    let params = new HttpParams();
+    if (date) {
+      params = params.set('date', date);
+    }
+    return this.httpClient.get<ContainerInOut>(`${this.url}/container/containerInOut`, { params });
   }
 }
