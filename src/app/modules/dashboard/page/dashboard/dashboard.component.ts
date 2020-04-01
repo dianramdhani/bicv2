@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 
 import { ContainerRestService } from '@data/service/container-rest.service';
 import { ContainerInOut } from '@data/schema/container-in-out';
+import { BusiestLocation } from '@data/schema/busiest-location';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +14,7 @@ export class DashboardComponent implements OnInit {
   /**
    * Tutorial from: https://blog.angular-university.io/angular-reactive-templates/
    */
+  busiestLocationObs: Observable<BusiestLocation>;
   containerInOutObs: Observable<ContainerInOut>;
 
   constructor(
@@ -20,6 +22,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.busiestLocationObs = this.containerRestService.getBusiestLocation();
     this.containerInOutObs = this.containerRestService.getContainerInOut();
   }
 
