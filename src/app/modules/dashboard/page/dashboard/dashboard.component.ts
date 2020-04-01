@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { ContainerRestService } from '@data/service/container-rest.service';
 import { ContainerInOut } from '@data/schema/container-in-out';
 import { BusiestLocation } from '@data/schema/busiest-location';
+import { ContainerData } from '@data/schema/container-data';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,6 +17,7 @@ export class DashboardComponent implements OnInit {
    */
   busiestLocationObs: Observable<BusiestLocation>;
   containerInOutObs: Observable<ContainerInOut>;
+  containerDataObs: Observable<ContainerData[]>;
 
   constructor(
     private containerRestService: ContainerRestService
@@ -24,6 +26,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.busiestLocationObs = this.containerRestService.getBusiestLocation();
     this.containerInOutObs = this.containerRestService.getContainerInOut();
+    this.containerDataObs = this.containerRestService.groupByOwner();
   }
 
 }
