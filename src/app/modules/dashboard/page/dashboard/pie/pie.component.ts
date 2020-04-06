@@ -1,5 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as Chart from 'chart.js';
+import { Observable } from 'rxjs';
+
+import { Capacity } from '@data/schema/capacity';
+import { ContainerRestService } from '@data/service/container-rest.service';
 
 @Component({
   selector: 'app-pie',
@@ -9,20 +13,30 @@ import * as Chart from 'chart.js';
 export class PieComponent implements OnInit {
   @ViewChild('chart', { static: true }) ctx: ElementRef;
 
-  constructor() { }
+  capacityObs: Observable<Capacity>;
+
+  constructor(
+    private containerRestService: ContainerRestService
+  ) { }
 
   ngOnInit() {
-    this.drawChart();
+    this.capacityObs = this.containerRestService.getCapacity();
+
+    this.capacityObs.subscribe(capacity => {
+      this.drawChart(capacity);
+    });
   }
 
-  protected drawChart() {
+  protected drawChart(capacity: Capacity) {
+    const freeCapacity = +capacity.countPercent.replace('%', '');
+
     const chart = new Chart(this.ctx.nativeElement, {
       type: 'doughnut',
       data: {
         datasets: [{
           data: [
-            52,
-            48,
+            100 - freeCapacity,
+            freeCapacity,
           ],
           backgroundColor: [
             '#97a3b9',
