@@ -6,6 +6,7 @@ import { Container } from '@data/schema/container';
 import { ContainerInOut } from '@data/schema/container-in-out';
 import { BusiestLocation } from '@data/schema/busiest-location';
 import { ContainerData } from '@data/schema/container-data';
+import { Capacity } from '@data/schema/capacity';
 
 @Injectable({
   providedIn: 'root'
@@ -58,6 +59,14 @@ export class ContainerRestService {
     return this.httpClient.get<BusiestLocation>(`${this.url}/container/busiestLocation`, { params });
   }
 
+  getCapacity(date: string = null) {
+    let params = new HttpParams();
+    if (date) {
+      params = params.set('date', date);
+    }
+    return this.httpClient.get<Capacity>(`${this.url}/container/capacity`, { params });
+  }
+
   getContainerInOut(date: string = null) {
     let params = new HttpParams();
     if (date) {
@@ -65,7 +74,6 @@ export class ContainerRestService {
     }
     return this.httpClient.get<ContainerInOut>(`${this.url}/container/containerInOut`, { params });
   }
-
 
   groupByOwner(date1: string = null, date2: string = null) {
     let params = new HttpParams();

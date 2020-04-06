@@ -44,13 +44,18 @@
         </ng-template>
     </div>
     <div class="col-lg mb-2">
-        <div class="card card-body widget">
+        <div class="card card-body widget" *ngIf="capacityObs | async as capacity; else loadingCapacity">
             <h6 class="tx-gray-500">Depot Free Capacity</h6>
-            <h3 class="tx-bolder">48% (4800 Container)</h3>
+            <h3 class="tx-bolder">{{ capacity.countPercent }} ({{ capacity.count }} Container)</h3>
             <small class="tx-bold tx-success">
-                <i data-feather="arrow-up"></i> 10% capacity increases
+                <i data-feather="arrow-up"></i> {{ capacity.increase }} capacity increases
             </small>
         </div>
+        <ng-template #loadingCapacity>
+            <div class="card card-body tx-center">
+                Loading...
+            </div>
+        </ng-template>
     </div>
 </div>
 <app-graph></app-graph>

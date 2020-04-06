@@ -5,6 +5,7 @@ import { ContainerRestService } from '@data/service/container-rest.service';
 import { ContainerInOut } from '@data/schema/container-in-out';
 import { BusiestLocation } from '@data/schema/busiest-location';
 import { ContainerData } from '@data/schema/container-data';
+import { Capacity } from '@data/schema/capacity';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,6 +18,7 @@ export class DashboardComponent implements OnInit {
    */
   busiestLocationObs: Observable<BusiestLocation>;
   containerInOutObs: Observable<ContainerInOut>;
+  capacityObs: Observable<Capacity>;
   containerDataObs: Observable<ContainerData[]>;
 
   constructor(
@@ -27,6 +29,7 @@ export class DashboardComponent implements OnInit {
     this.busiestLocationObs = this.containerRestService.getBusiestLocation();
     this.containerInOutObs = this.containerRestService.getContainerInOut();
     this.containerDataObs = this.containerRestService.groupByOwner();
+    this.capacityObs = this.containerRestService.getCapacity();
   }
 
 }
