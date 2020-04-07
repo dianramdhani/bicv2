@@ -64,7 +64,7 @@
         <div class="card mb-2" *ngIf="containerDataObs | async as containerData; else loadingContainerData">
             <h6 class="card-header">Container Data</h6>
             <div class="card-body pd-y-15 pd-x-10">
-                <div class="table-responsive">
+                <div class="table-responsive" *ngIf="containerData.length">
                     <table class="table table-borderless table-sm tx-13 tx-nowrap mg-b-0">
                         <thead>
                             <tr class="tx-10 tx-spacing-1 tx-color-03 tx-uppercase">
@@ -82,11 +82,13 @@
                         </tbody>
                     </table>
                 </div>
-
+                <div class="tx-center" *ngIf="!containerData.length">
+                    No Data!
+                </div>
             </div>
-            <div class="card-footer bd-t-0 tx-right mg-lg-x-50 mb-2">
+            <!-- <div class="card-footer bd-t-0 tx-right mg-lg-x-50 mb-2">
                 <a href="">Show More</a>
-            </div>
+            </div> -->
         </div>
         <ng-template #loadingContainerData>
             <div class="card mb-2">
