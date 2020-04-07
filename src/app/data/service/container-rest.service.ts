@@ -7,6 +7,7 @@ import { ContainerInOut } from '@data/schema/container-in-out';
 import { BusiestLocation } from '@data/schema/busiest-location';
 import { ContainerData } from '@data/schema/container-data';
 import { Capacity } from '@data/schema/capacity';
+import { ContainerDirection } from '@data/schema/container-direction';
 
 @Injectable({
   providedIn: 'root'
@@ -84,5 +85,16 @@ export class ContainerRestService {
       params = params.set('date2', date2);
     }
     return this.httpClient.get<ContainerData[]>(`${this.url}/container/groupByOwner`, { params });
+  }
+
+  groupByDirectionDate(date1: string = null, date2: string = null) {
+    let params = new HttpParams();
+    if (date1) {
+      params = params.set('date1', date1);
+    }
+    if (date2) {
+      params = params.set('date2', date2);
+    }
+    return this.httpClient.get<ContainerDirection[]>(`${this.url}/container/groupByDirectionDate`, { params });
   }
 }

@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as Chart from 'chart.js';
 
+import { ContainerRestService } from '@data/service/container-rest.service';
+import { ContainerDirection } from '@data/schema/container-direction';
+
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
@@ -9,45 +12,50 @@ import * as Chart from 'chart.js';
 export class GraphComponent implements OnInit {
   @ViewChild('chart', { static: true }) ctx: ElementRef;
 
-  constructor() { }
+  constructor(
+    private containerRestService: ContainerRestService
+  ) { }
 
   ngOnInit() {
-    this.drawChart();
+    this.containerRestService.groupByDirectionDate()
+      .subscribe(containers => {
+        this.drawChart(containers);
+      });
   }
 
-  protected drawChart() {
+  protected drawChart(containers: ContainerDirection[]) {
+    console.log(containers, containers
+      .filter(container => container.location === 'In')
+      .map(container => ({ x: new Date(container.date), y: container.count })));
     const chart = new Chart(this.ctx.nativeElement, {
       type: 'line',
       data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)'
-          ],
-          borderWidth: 1
-        }]
+        datasets: [
+          {
+            label: 'Out',
+            data: containers
+              .filter(container => container.location === 'Out')
+              .map(container => ({ t: new Date(container.date), y: container.count })),
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            borderColor: 'rgba(255, 99, 132, 1)'
+          },
+          {
+            label: 'In',
+            data: containers
+              .filter(container => container.location === 'In')
+              .map(container => ({ t: new Date(container.date), y: container.count })),
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)'
+          }
+        ]
       },
       options: {
         responsive: false,
         scales: {
-          yAxes: [{
-            ticks: {
-              beginAtZero: true
+          xAxes: [{
+            type: 'time',
+            time: {
+              unit: 'day'
             }
           }]
         }
