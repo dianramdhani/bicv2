@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataTablesModule } from 'angular-datatables';
 import { MomentModule } from 'ngx-moment';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { PinchZoomModule } from 'ngx-pinch-zoom';
@@ -20,7 +20,8 @@ import { ImageCropperComponent } from './component/image-cropper/image-cropper.c
     DataTablesModule,
     ReactiveFormsModule,
     ImageCropperModule,
-    PinchZoomModule
+    PinchZoomModule, 
+    FormsModule
   ],
   exports: [
     DataTablesModule,
@@ -28,6 +29,7 @@ import { ImageCropperComponent } from './component/image-cropper/image-cropper.c
     ReactiveFormsModule,
     NgbModule,
     ImageCropperModule,
+    FormsModule,
 
     ListContainersComponent,
     ImageCropperComponent
