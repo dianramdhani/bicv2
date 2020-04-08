@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import * as Chart from 'chart.js';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { Capacity } from '@data/schema/capacity';
 import { ContainerRestService } from '@data/service/container-rest.service';
@@ -12,42 +12,18 @@ import { ContainerRestService } from '@data/service/container-rest.service';
 })
 export class PieComponent implements OnInit {
   @ViewChild('chart', { static: true }) ctx: ElementRef;
+  @Input('date') dateSelected: Subject<string>;
 
   capacityObs: Observable<Capacity>;
+  chart: Chart;
 
   constructor(
     private containerRestService: ContainerRestService
   ) { }
 
   ngOnInit() {
-    this.capacityObs = this.containerRestService.getCapacity();
-
-    this.capacityObs.subscribe(capacity => {
-      this.drawChart(capacity);
-    });
-  }
-
-  protected drawChart(capacity: Capacity) {
-    const freeCapacity = +capacity.countPercent.replace('%', '');
-
-    const chart = new Chart(this.ctx.nativeElement, {
+    this.chart = new Chart(this.ctx.nativeElement, {
       type: 'doughnut',
-      data: {
-        datasets: [{
-          data: [
-            100 - freeCapacity,
-            freeCapacity,
-          ],
-          backgroundColor: [
-            '#97a3b9',
-            '#007bff',
-          ]
-        }],
-        labels: [
-          'Occupied',
-          'Free Capacity',
-        ]
-      },
       options: {
         responsive: false,
         legend: {
@@ -56,5 +32,33 @@ export class PieComponent implements OnInit {
         cutoutPercentage: 80
       }
     });
+
+    this.dateSelected.subscribe(date => {
+      this.capacityObs = this.containerRestService.getCapacity(date);
+      this.capacityObs.subscribe(capacity => {
+        this.drawChart(capacity);
+      });
+    });
+  }
+
+  protected drawChart(capacity: Capacity) {
+    const freeCapacity = +capacity.countPercent.replace('%', '');
+    this.chart.data = {
+      datasets: [{
+        data: [
+          100 - freeCapacity,
+          freeCapacity,
+        ],
+        backgroundColor: [
+          '#97a3b9',
+          '#007bff',
+        ]
+      }],
+      labels: [
+        'Occupied',
+        'Free Capacity',
+      ]
+    };
+    this.chart.update();
   }
 }

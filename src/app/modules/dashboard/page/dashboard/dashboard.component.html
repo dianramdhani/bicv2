@@ -1,11 +1,10 @@
 <div class="d-md-flex align-items-center justify-content-between mg-b-20 mg-lg-b-25 mg-xl-b-30">
     <h4 class="mg-b-0 tx-spacing--1">Dashboard</h4>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb breadcrumb-style1 mg-b-10">
-            <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-        </ol>
-    </nav>
+    <div class="form-inline">
+        <label class="tx-primary tx-bolder mr-2">Date:</label>
+        <input class="form-control" type="date" [ngModel]="dateInit | date: 'yyyy-MM-dd'"
+            (ngModelChange)="dateChange($event)">
+    </div>
 </div>
 <div class="row">
     <div class="col-lg mb-2">
@@ -100,6 +99,6 @@
         </ng-template>
     </div>
     <div class="col-lg">
-        <app-pie></app-pie>
+        <app-pie [date]="dateSelected"></app-pie>
     </div>
 </div>

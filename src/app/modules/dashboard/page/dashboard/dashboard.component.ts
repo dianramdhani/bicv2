@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import * as moment from 'moment';
 
 import { ContainerRestService } from '@data/service/container-rest.service';
 import { ContainerInOut } from '@data/schema/container-in-out';
@@ -21,15 +22,30 @@ export class DashboardComponent implements OnInit {
   capacityObs: Observable<Capacity>;
   containerDataObs: Observable<ContainerData[]>;
 
+  dateInit = new Date();
+  dateSelected = new Subject<string>();
+
   constructor(
     private containerRestService: ContainerRestService
   ) { }
 
   ngOnInit() {
-    this.busiestLocationObs = this.containerRestService.getBusiestLocation();
-    this.containerInOutObs = this.containerRestService.getContainerInOut();
     this.containerDataObs = this.containerRestService.groupByOwner();
-    this.capacityObs = this.containerRestService.getCapacity();
+
+    this.dateSelected.subscribe(date => {
+      this.busiestLocationObs = this.containerRestService.getBusiestLocation(date);
+      this.containerInOutObs = this.containerRestService.getContainerInOut(date);
+      this.capacityObs = this.containerRestService.getCapacity(date);
+    });
+
+    setTimeout(() => this.dateChange(), 500);
   }
 
+  dateChange(event: string = null) {
+    if (!event) {
+      this.dateSelected.next(moment(this.dateInit).format('YYYY-MM-DD'));
+    } else {
+      this.dateSelected.next(moment(event).format('YYYY-MM-DD'));
+    }
+  }
 }
